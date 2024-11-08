@@ -6,7 +6,6 @@ from numpy import exp
 import time
 import pickle
 
-
 def initializeWeights(n_in, n_out):
     """
     # initializeWeights return the random weights for Neural Network given the
@@ -23,7 +22,6 @@ def initializeWeights(n_in, n_out):
     W = (np.random.rand(n_out, n_in + 1) * 2 * epsilon) - epsilon
     return W
 
-
 def sigmoid(z):
     """# Notice that z can be a scalar, a vector or a matrix
     # return the sigmoid of input z"""
@@ -31,7 +29,6 @@ def sigmoid(z):
     sigmoid_result = 1 / (1 + (exp(-z)))
 
     return  sigmoid_result
-
 
 def preprocess():
     """ Input:
@@ -147,7 +144,6 @@ def preprocess():
 
     return train_data, train_label, validation_data, validation_label, test_data, test_label, selected_features
 
-
 def nnObjFunction(params, *args):
     """% nnObjFunction computes the value of objective function (negative log 
     %   likelihood error function with regularization) given the parameters 
@@ -230,7 +226,7 @@ def nnObjFunction(params, *args):
     
     w1_square_sum = np.sum(np.square(w1))
     w2_square_sum = np.sum(np.square(w2))
-    sum2 = w1_square_sum + w1_square_sum                
+    sum2 = w1_square_sum + w2_square_sum                
     reg_factor = (sum2*lambdaval)/(2*n)
     reg_error = error + reg_factor
     
@@ -262,7 +258,6 @@ def nnObjFunction(params, *args):
     obj_grad = np.concatenate((reg_grad_w1.flatten(), reg_grad_w2.flatten()),0)
     
     return (obj_val, obj_grad)
-
 
 def nnPredict(w1, w2, data):
     """% nnPredict predicts the label of data given the parameter w1, w2 of Neural
@@ -305,9 +300,6 @@ def nnPredict(w1, w2, data):
         labels[x] = max_arg
         
     return labels
-
-
-"""**************Neural Network Script Starts here********************************"""
 
 train_data, train_label, validation_data, validation_label, test_data, test_label, selected_features = preprocess()
 

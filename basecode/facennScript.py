@@ -1,7 +1,3 @@
-'''
-Comparing single layer MLP with deep MLP (using TensorFlow)
-'''
-
 import numpy as np
 import pickle
 from math import sqrt
@@ -10,7 +6,6 @@ import time
 import pickle
 from scipy.optimize import minimize
 
-# Do not change this
 def initializeWeights(n_in,n_out):
     """
     # initializeWeights return the random weights for Neural Network given the
@@ -25,14 +20,11 @@ def initializeWeights(n_in,n_out):
     epsilon = sqrt(6) / sqrt(n_in + n_out + 1)
     W = (np.random.rand(n_out, n_in + 1)*2* epsilon) - epsilon
     return W
-
-
-
-# Replace this with your sigmoid implementation
+    
 def sigmoid(z):
     e = 1 / (1 + exp(-z))
     return e
-# Replace this with your nnObjFunction implementation
+
 def nnObjFunction(params, *args):
     n_input, n_hidden, n_class, training_data, training_label, lambdaval = args
 
@@ -108,8 +100,7 @@ def nnObjFunction(params, *args):
     obj_grad = np.concatenate((reg_grad_w1.flatten(), reg_grad_w2.flatten()),0)
     
     return (obj_val, obj_grad)
-    
-# Replace this with your nnPredict implementation
+
 def nnPredict(w1,w2,data):
     labels = np.zeros(shape=(data.shape[0], 1))
     #labels = np.zeros((data.shape[0],1))
@@ -137,7 +128,6 @@ def nnPredict(w1,w2,data):
         
     return labels
 
-# Do not change this
 def preprocess():
     pickle_obj = pickle.load(file=open('face_all.pickle', 'rb'))
     features = pickle_obj['Features']
@@ -152,7 +142,6 @@ def preprocess():
     test_y = labels[23765:]
     return train_x, train_y, valid_x, valid_y, test_x, test_y
 
-"""**************Neural Network Script Starts here********************************"""
 train_data, train_label, validation_data, validation_label, test_data, test_label = preprocess()
 #  Train Neural Network
 n_input = train_data.shape[1]
@@ -160,7 +149,7 @@ n_input = train_data.shape[1]
 # set the number of nodes in output unit
 n_class = 2
 
-n_hidden_array = [4,8,12,16,20]
+n_hidden_array = [4,8,12,16,20,24,28]
 
 for x in n_hidden_array:
     for y in range(0,70,10):
